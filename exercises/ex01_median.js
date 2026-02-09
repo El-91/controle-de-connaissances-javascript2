@@ -12,6 +12,15 @@ Rappel :
 
 function findMedianSortedArrays(nums1, nums2) {
   // TODO : écrire ton code ici
+  let tabMediane = nums1.concat(nums2).sort((a,b) => a-b);
+  let n = tabMediane.length;
+  if (n % 2 === 1) {
+    return tabMediane[Math.floor(n/2)];
+  } else {
+    const med1 = tabMediane[n / 2 - 1];
+    const med2 = tabMediane[n / 2];
+    return (med1 + med2) / 2;
+  }
 }
 
 // --------------------

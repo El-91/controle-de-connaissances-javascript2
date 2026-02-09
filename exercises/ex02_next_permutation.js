@@ -7,9 +7,30 @@ dans l'ordre lexicographique. Si nums est la dernière permutation, la transform
 (permutation triée en ordre croissant).
 */
 
+
 function nextPermutation(nums) {
-  // TODO : écrire ton code ici
+  let n = nums.length;
+  let i = n - 2;
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+    i--;
+  }
+  if (i >= 0) {
+    let j = n - 1;
+    while (nums[j] <= nums[i]) {
+      j--;
+    }
+    [nums[i], nums[j]] = [nums[j], nums[i]];
+  }
+  let debut = i + 1;
+  let fin = n - 1;
+  while (debut < fin) {
+    [nums[debut], nums[fin]] = [nums[fin], nums[debut]];
+    debut++;
+    fin--;
+  }
 }
+
+
 
 // --------------------
 // Tests (au moins 3)

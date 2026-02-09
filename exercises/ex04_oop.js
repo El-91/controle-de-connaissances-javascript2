@@ -18,16 +18,25 @@ class Book {
   }
 
   borrow() {
+    if (this.#isBorrowed) {
+      return false;
+    } else {
+      this.#isBorrowed = true;
+      return true;
+    }
     // TODO : si déjà emprunté -> false
     // sinon marquer emprunté -> true
   }
 
   returnBook() {
     // TODO : remettre non emprunté et retourner true
+    this.#isBorrowed = false;
+    return true;
   }
 
   isBorrowed() {
     // TODO : retourner true/false
+    return this.#isBorrowed;
   }
 }
 
@@ -42,6 +51,12 @@ class User {
     // - appeler book.borrow()
     // - si true : borrowedCount++ et return true
     // - sinon return false
+    if (book.borrow()) {
+      this.borrowedCount++;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
@@ -49,6 +64,7 @@ class Librarian extends User {
   forceReturn(book) {
     // TODO : forcer le retour du livre (book.returnBook())
     // retourner true si réussi
+    return book.returnBook();
   }
 }
 
@@ -60,6 +76,7 @@ const book2 = new Book("Le Petit Prince", "Antoine de Saint-Exupéry");
 
 const user = new User("Sara");
 const librarian = new Librarian("Mr. Smith");
+
 
 console.log("User emprunte book1:", user.borrow(book1)); // attendu: true
 console.log("Book1 emprunté ?", book1.isBorrowed()); // attendu: true
